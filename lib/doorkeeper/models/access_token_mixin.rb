@@ -132,9 +132,13 @@ module Doorkeeper
       set_timestamps
 
       generator = Doorkeeper.configuration.access_token_generator.constantize
-      self.token = generator.generate(resource_owner_id: resource_owner_id,
-                                      scopes: scopes, application: application,
-                                      expires_in: expires_in, created_at: created_at)
+      self.token = generator.generate(
+        resource_owner_id: resource_owner_id,
+        scopes: scopes,
+        application: application,
+        expires_in: expires_in,
+        created_at: created_at
+      )
     rescue NoMethodError
       raise Errors::UnableToGenerateToken, "#{generator} does not respond to `.generate`."
     rescue NameError
@@ -146,7 +150,8 @@ module Doorkeeper
         self.created_at = current_time
 
         if respond_to? :updated_at=
-          # Mongoid will not set the updated_at automatically if the created_at is set manually
+          # Mongoid will not set the updated_at automatically if the
+          # created_at is set manually
           self.updated_at = current_time
         end
       end
