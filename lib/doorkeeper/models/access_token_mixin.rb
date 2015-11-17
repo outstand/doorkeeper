@@ -142,7 +142,7 @@ module Doorkeeper
     end
 
     def set_timestamps
-      if self.created_at.nil?
+      if created_at.nil?
         self.created_at = current_time
 
         if respond_to? :updated_at=
