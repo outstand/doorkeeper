@@ -22,7 +22,7 @@ module Doorkeeper
       end
 
       def default_scopes
-        server.default_scopes
+        client.application.default_token_scopes || server.default_scopes
       end
 
       def valid?
