@@ -29,6 +29,7 @@ module Doorkeeper
       end
 
       def scope
+        # TODO: apply default scope here as well
         @scope.presence || server.default_scopes.to_s
       end
 
